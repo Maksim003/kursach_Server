@@ -1,0 +1,156 @@
+@startuml
+class com.example.kursach_Server.Database.Config {
+# String dbHost
+# String dbPort
+# String dbUser
+# String dbPass
+# String dbName
+}
+class com.example.kursach_Server.ServerThread {
+~ Socket client
+~ DatabaseModel databaseModel
++ void run()
++ Answer sendData(Request)
+}
+class com.example.kursach_Server.Model.Account {
+- int id
+- String login
+- String password
+- int role
+- int access
+- String salt
++ int getId()
++ void setId(int)
++ String getLogin()
++ void setLogin(String)
++ String getPassword()
++ void setPassword(String)
++ int getRole()
++ void setRole(int)
++ int getAccess()
++ void setAccess(int)
++ String getSalt()
++ void setSalt(String)
+}
+class com.example.kursach_Server.Model.Answer {
+- String answer
+- ArrayList<Account> accounts
+- ArrayList<Students> students
+- Marks marks
+- double data
+- String salt
++ String getAnswer()
++ void setAnswer(String)
++ ArrayList<Account> getAccounts()
++ void setAccounts(ArrayList<Account>)
++ ArrayList<Students> getStudents()
++ void setStudents(ArrayList<Students>)
++ double getData()
++ void setData(double)
++ String getSalt()
++ void setSalt(String)
++ Marks getMarks()
++ void setMarks(Marks)
+}
+class com.example.kursach_Server.Model.DatabaseModel {
+~ Database db
++ void connectToDb()
++ String getUserSalt(String)
++ void signUp(Account)
++ void addStudents(Students)
++ void addMarks(Marks,int)
++ Account getUser(Account)
++ void changePass(String,String)
++ ArrayList<Account> getTableViewAccounts(int)
++ ArrayList<Students> getTableViewStudents()
++ Marks getMarks(int)
++ ArrayList<Marks> getArrayMarks()
++ void deleteAccount(String)
++ void calculateStudent(Marks)
++ void updateScholarship()
++ void deleteStudent(int)
++ void deleteMarks(int)
++ void deleteScholarship(int)
++ void changeRole(String,int)
++ void changeAccess(String)
++ void changeBasicScholarship(double)
++ void addScholarship(int)
++ void changeDataStudent(Students)
++ void changeDataMarks(Marks)
++ double getBasicScholarship()
++ double getScholarship(int)
+}
+class com.example.kursach_Server.Model.Students {
+- Integer id
+- String surname
+- String name
+- String patronymic
+- String date
++ Integer getId()
++ void setId(int)
++ String getSurname()
++ void setSurname(String)
++ String getName()
++ void setName(String)
++ String getPatronymic()
++ void setPatronymic(String)
++ String getDate()
++ void setDate(String)
+}
+class com.example.kursach_Server.Server {
++ {static} DatabaseModel databaseModel
++ {static} void main(String[])
+}
+class com.example.kursach_Server.Database.Database {
+~ Connection dbConnection
+~ String connectionString
+~ Statement statement
++ void createDbConnection()
++ ResultSet getData(String)
++ void updateData(String)
+}
+class com.example.kursach_Server.Model.Request {
+- String request
+- Account account
+- Students students
+- Marks marks
+- double basicS
++ String getRequest()
++ void setRequest(String)
++ Account getAccount()
++ void setAccount(Account)
++ Students getStudents()
++ void setStudents(Students)
++ double getBasicS()
++ void setBasicS(double)
++ Marks getMarks()
++ void setMarks(Marks)
+}
+class com.example.kursach_Server.Model.Marks {
+- String id
+- int coursework
+- int economy
+- int networks
+- int programming
+- int ergaticSystem
+- int id_student
++ String getId()
++ void setId(String)
++ int getCoursework()
++ void setCoursework(int)
++ int getEconomy()
++ void setEconomy(int)
++ int getNetworks()
++ void setNetworks(int)
++ int getProgramming()
++ void setProgramming(int)
++ int getErgaticSystem()
++ void setErgaticSystems(int)
++ int getId_student()
++ void setId_student(int)
+}
+
+
+com.example.kursach_Server.Thread <|-- com.example.kursach_Server.ServerThread
+com.example.kursach_Server.Database.Config <|-- com.example.kursach_Server.Database.Database
+@enduml
