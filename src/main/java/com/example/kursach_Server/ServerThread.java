@@ -48,7 +48,7 @@ public class ServerThread extends Thread {
 
     public Answer sendData(Request request) throws SQLException {
         ArrayList<Account> accounts = new ArrayList<>();
-        ArrayList<Students> students = new ArrayList<>();
+        ArrayList<Students> students;
         Answer answer = new Answer();
         answer.setAnswer(request.getRequest());
         switch (request.getRequest()) {

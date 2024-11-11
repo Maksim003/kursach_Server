@@ -90,26 +90,6 @@ public class DatabaseModel {
         return accounts;
     }
 
-    /*public ArrayList<com.example.kursach_Server.Model.Students> getTableViewStudents() throws SQLException {
-        ArrayList<com.example.kursach_Server.Model.Students> students = new ArrayList<>();
-        String select = "SELECT * FROM students";
-        ResultSet resultSet = db.getData(select);
-        while (resultSet.next()) {
-            int id = resultSet.getInt("id");
-            String fio = resultSet.getString("fio");
-            String date = resultSet.getDate("date").toString();
-            int math = resultSet.getInt("mathAnalysis");
-            int physics = resultSet.getInt("programming");
-            int english = resultSet.getInt("english");
-            int informatics = resultSet.getInt("physics");
-            double basicScholarship = resultSet.getDouble("basicScholarship");
-            double scholarship = resultSet.getDouble("scholarship");
-            scholarship = Math.round(scholarship * 100.0) / 100.0;
-            students.add(new com.example.kursach_Server.Model.Students(id, fio, date, math, physics, english, informatics, basicScholarship, scholarship));
-        }
-        return students;
-    }*/
-
     public ArrayList<Students> getTableViewStudents() throws SQLException {
         ArrayList<Students> students = new ArrayList<>();
         String select = "SELECT * FROM students";
@@ -120,9 +100,6 @@ public class DatabaseModel {
             String surname = resultSet.getString("surname");
             String patronymic = resultSet.getString("patronymic");
             String date = resultSet.getDate("date").toString();
-            //double basicScholarship = resultSet.getDouble("basicScholarship");
-            //double scholarship = resultSet.getDouble("scholarship");
-            //scholarship = Math.round(scholarship * 100.0) / 100.0;
             students.add(new Students(id, surname, name, patronymic, date));
         }
         return students;
@@ -141,23 +118,6 @@ public class DatabaseModel {
         }
         return marks;
     }
-
-    public ArrayList<Marks> getArrayMarks() throws SQLException {
-        ArrayList<Marks> marks = new ArrayList<>();
-        String select = "SELECT * FROM marks";
-        ResultSet resultSet = db.getData(select);
-        while (resultSet.next()) {
-            int cw = resultSet.getInt("coursework");
-            int ec = resultSet.getInt("economy");
-            int erg = resultSet.getInt("ergaticSystem");
-            int ns = resultSet.getInt("networks");
-            int pg = resultSet.getInt("programming");
-            int id = resultSet.getInt("id_student");
-            marks.add(new Marks(cw, ec, ns, pg, erg, id));
-        }
-        return marks;
-    }
-
     public void deleteAccount(String log) {
         String select = "DELETE FROM users" + " WHERE login = " + "\"" + log + "\"";
         db.updateData(select);
